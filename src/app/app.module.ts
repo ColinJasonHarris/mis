@@ -104,6 +104,8 @@ import {EventService} from './demo/service/eventservice';
 import {NodeService} from './demo/service/nodeservice';
 
 import {BreadcrumbService} from './breadcrumb.service';
+import {StockComponent} from './mis/view/stock.component';
+import {StockService} from './mis/service/stockservice';
 
 @NgModule({
     imports: [
@@ -205,11 +207,12 @@ import {BreadcrumbService} from './breadcrumb.service';
         AppNotfoundComponent,
         AppErrorComponent,
         AppAccessdeniedComponent,
-        AppLoginComponent
+        AppLoginComponent,
+        StockComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-        CarService, CountryService, EventService, NodeService, BreadcrumbService
+        StockService, CarService, CountryService, EventService, NodeService, BreadcrumbService
     ],
     bootstrap: [AppComponent]
 })

@@ -27,6 +27,15 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
         this.model = [
             {label: 'Dashboard', icon: 'dashboard', routerLink: ['/']},
             {
+                label: 'Products', icon: 'gavel',
+                items: [
+
+                    {label: 'Production', icon: 'weekend', routerLink: ['/stock']}
+                    // {label: 'Stock', icon: 'weekend', routerLink: ['/stock_masterDetail']}
+
+                ]
+            },
+            {
                 label: 'Menu Modes', icon: 'settings',
                 items: [
                     {label: 'Static Menu', icon: 'view_quilt', command: (event) => {this.app.layoutMode = 'static'; }},

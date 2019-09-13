@@ -1,0 +1,123 @@
+<div class="ui-g">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <h3>Sofa Pronto - Stock</h3>
+            <p-table #dt [columns]="scrollableCols" [frozenColumns]="frozenCols" [value]="allstock"
+                     [paginator]="true" [rows]="14" [globalFilterFields]="['Model','Size']" [scrollable]="true"
+                     frozenWidth="900px">
+                <ng-template pTemplate="caption">
+                    <p-toolbar name="toolbar">
+                        <div class="ui-toolbar-group-left">
+                            <!--<p-button label="Save" icon="pi pi-save" iconPos="left" (click)="this.stockService.updateStock(stock)"></p-button>-->
+                        </div>
+                        <div class="ui-toolbar-group-right">
+                            Published:<p-inputSwitch [(ngModel)]="publishedChecked"></p-inputSwitch>
+
+                            <i class="pi pi-search" style="padding-left:10px;padding-right:10px;margin:4px 4px 0 0;"></i>
+                            <input name="search" type="text" ize="30" pInputText
+                                   (input)="dt.filterGlobal($event.target.value,'contains')"
+                                   placeholder="Search"/>
+                            <i class="fa fa-bars"></i>
+                        </div>
+                    </p-toolbar>
+                </ng-template>
+                <ng-template pTemplate="frozencolgroup" let-columns>
+                    <colgroup>
+                        <col style="width:100px;height:222px;">
+                        <col style="width:220px;height:222px;">
+                        <col style="width:170px;height:222px;">
+                        <col style="width:180px;height:222px;">
+                        <col style="width:220px;height:222px;">
+                    </colgroup>
+                </ng-template>
+                <ng-template pTemplate="colgroup" let-columns>
+                    <colgroup>
+                        <col style="width:120px;text-align:right;">
+                        <col style="width:120px;">
+                        <col style="width:120px;">
+                        <col style="width:120px;">
+                        <col style="width:120px;">
+                        <col style="width:120px;">
+                        <col style="width:130px;">
+                        <col style="width:120px;">
+                        <col style="width:120px;">
+                        <col style="width:120px;">
+                        <col style="width:120px;">
+                        <col style="width:120px;">
+                        <col style="width:120px;">
+                        <col style="width:120px;">
+                        <col style="width:120px;">
+                        <col style="width:120px;">
+                        <col style="width:120px;">
+                    </colgroup>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <ng-container *ngFor="let col of columns" [pSortableColumn]="col.field" [ngSwitch]="col.field">
+                            <ng-container *ngIf="col.show == 'true'">
+                                <th *ngSwitchCase="'Model'" style="color:White; background-color:#607D8B; text-align:left;">
+                                    <p-sortIcon [field]="col.field"></p-sortIcon>&nbsp;{{col.header}}&nbsp;&nbsp;&nbsp;
+                                    <p-multiSelect appendTo="body" [options]="products" [style]="{'width':'300'}" (click)="$event.stopPropagation();"
+                                                   (onChange)="dt.filter($event.value,col.field,'in');">
+                                    </p-multiSelect>
+                                </th>
+                                <th *ngSwitchCase="'Size'" style="color: White; background-color: #607D8B; text-align: left;">
+                                    <p-sortIcon [field]="col.field"></p-sortIcon>&nbsp;{{col.header}}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <p-multiSelect appendTo="body" *ngSwitchCase="'Size'" [options]="sizes" [style]="{'width':'100'}"
+                                                   (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+                                </th>
+                                <th *ngSwitchCase="'Fabric'" style="color: White; background-color: #607D8B; text-align: left;">
+                                    <p-sortIcon [field]="col.field"></p-sortIcon>&nbsp;
+                                    {{col.header}}
+                                </th>
+                                <th *ngSwitchCase="'Colour'" style="color: White; background-color: #607D8B; text-align:left;">
+                                    <p-sortIcon [field]="col.field"></p-sortIcon>&nbsp;
+                                    {{col.header}}
+                                </th>
+                                <th *ngSwitchDefault style="color: White; background-color: #607D8B; height: 66px; text-align: left; "nowrap="true">
+                                    <p-sortIcon [field]="col.field"></p-sortIcon>&nbsp;
+                                    {{col.header}}
+                                </th>
+                            </ng-container>
+                        </ng-container>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr [pSelectableRow]="rowData">
+
+                        <td *ngFor="let col of columns">{{rowData[col.field]}}</td>
+
+
+                        <!--<ng-container *ngFor="let col of columns" [ngSwitch]="col.editable">
+
+
+                                <td *ngSwitchCase="'1'" pEditableColumn [ngSwitch]="col.type">
+                                    <p-cellEditor *ngSwitchCase="'date'">
+                                        <ng-template type="input">
+                                            <p-calendar appendTo="body" [showIcon]="true" [(ngModel)]="rowData[col.field]"></p-calendar>
+                                        </ng-template>
+                                        <ng-template pTemplate="output">
+                                            {{rowData[col.field] | date:'dd-MM-yyyy'}}
+                                        </ng-template>
+                                    </p-cellEditor>
+                                    <p-cellEditor *ngSwitchDefault>
+                                        <ng-template pTemplate="input">
+                                            <input type="col.type" [(ngModel)]="rowData[col.field]">
+                                        </ng-template>
+                                        <ng-template pTemplate="output">
+                                            {{rowData[col.field]}}
+                                        </ng-template>
+                                    </p-cellEditor>
+                                </td>
+                            <td *ngSwitchDefault>{{rowData[col.field]}}</td>
+                        </ng-container>-->
+
+                    </tr>
+                </ng-template>
+
+            </p-table>
+
+        </div>
+    </div>
+
+</div>

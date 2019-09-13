@@ -20,6 +20,8 @@ import { AppErrorComponent } from './pages/app.error.component';
 import { AppAccessdeniedComponent } from './pages/app.accessdenied.component';
 import { AppLoginComponent } from './pages/app.login.component';
 
+import {StockComponent} from './mis/view/stock.component';
+
 export const routes: Routes = [
     { path: '', component: AppMainComponent,
         children: [
@@ -36,7 +38,8 @@ export const routes: Routes = [
             { path: 'charts', component: ChartsDemoComponent },
             { path: 'file', component: FileDemoComponent },
             { path: 'utils', component: UtilsDemoComponent },
-            { path: 'documentation', component: DocumentationComponent }
+            { path: 'documentation', component: DocumentationComponent },
+            {path: 'stock', component: StockComponent}
         ]
     },
     {path: 'error', component: AppErrorComponent},
